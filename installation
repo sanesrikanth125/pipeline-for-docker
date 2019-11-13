@@ -1,0 +1,15 @@
+node('raj') {
+    stage('update') {
+    sh label: '', script: '''sudo apt-get update
+'''
+}
+stage('install') {
+    sh label: '', script: 'curl -sSL https://get.docker.com/ | sh'
+}
+stage('start') {
+    sh label: '', script: 'sudo service docker start'
+}
+stage('docker') {
+    sh label: '', script: 'sudo usermod -aG docker $(id -un)'
+}
+}
